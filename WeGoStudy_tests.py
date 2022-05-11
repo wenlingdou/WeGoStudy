@@ -7,5 +7,7 @@ class PositiveTestCases(unittest.TestCase):
     def test_create_new_user():
         methods.setUp()
         methods.login()
+        methods.create_new_student()
+        methods.logout()
         methods.tearDown()
         

@@ -49,6 +49,13 @@ def login():
     sleep(3)
     print('------------Signed up successfully!-----------------')
 
+def logout():
+    driver.find_element(By.XPATH, '//img[@alt="Partner"]').click()
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//a[contains(., "Log out")]').click()
+    sleep(0.25)
+
+
 def create_new_student():
     if driver.current_url==locators.login_page_url:
         print(f'----------Current URL: {locators.login_page_url}--------')
@@ -126,16 +133,15 @@ def create_new_student():
     driver.find_element(By.XPATH, '//input[@value="Save"]').click()
     sleep(0.5)
     driver.find_element(By.CLASS_NAME, 'toast-message').is_displayed()
-    sleep(0.25)
+    sleep(5)
     print('-------------Student is created successfully.-----------')
 
 
-
-
-setUp()
-login()
-create_new_student()
-tearDown()
+# setUp()
+# login()
+# create_new_student()
+# logout()
+# tearDown()
 
 
 
