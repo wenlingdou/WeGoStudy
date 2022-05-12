@@ -51,10 +51,13 @@ def login():
     print('------------Signed up successfully!-----------------')
 
 def logout():
-    driver.find_element(By.XPATH, '//img[@alt="Partner"]').click()
+    driver.find_element(By.CSS_SELECTOR, 'span[class="my-auto mr-2 pf-name"]').click()
     sleep(0.25)
     driver.find_element(By.XPATH, '//a[contains(., "Log out")]').click()
     sleep(0.25)
+    driver.find_element(By.ID, 'authentication').is_displayed()
+    sleep(0.25)
+    print('-----------------Signed out successfully.-----------------')
 
 
 def create_new_student():
