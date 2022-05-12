@@ -1,4 +1,5 @@
 import datetime
+import random
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -85,28 +86,36 @@ def create_new_student():
     sleep(1.25)
 
     # select country
-    driver.find_element(By.CLASS_NAME, 'chosen-single').click()
+    driver.find_element(By.XPATH, '//span[text()="Country"]').click()
     sleep(0.25)
-    driver.find_element(By.CLASS_NAME, 'chosen-search-input').send_keys('Canada')
+    driver.find_element(By.CLASS_NAME, 'chosen-search-input').send_keys('Australia')
     sleep(0.25)
     driver.find_element(By.CLASS_NAME, 'chosen-search-input').send_keys(Keys.RETURN)
     sleep(0.25)
+    # x = random.randint(1,20)
+    # driver.find_element(By.XPATH, f'//li[@data-option-array-index="{x}"]').click()
+    # sleep(0.5)
+
 
     # select province
-    driver.find_element(By.ID, 'user_student_detail_attributes_address_attributes_state_chosen').click()
-    sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_state_chosen"]/div/div/input').send_keys('British Columbia')
-    sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_state_chosen"]/div/div/input').send_keys(Keys.RETURN)
-    sleep(0.25)
+    driver.find_element(By.XPATH, '//span[text()="Province/State"]').click()
+    sleep(0.5)
+    driver.find_element(By.XPATH, '//li[@data-option-array-index = "1"]').click()
+    sleep(0.5)
+    # y = random.randint(1,2)
+    # driver.find_element(By.XPATH, f'(//li[@data-option-array-index = "{y}"])[2]').click()
+    # sleep(0.5)
+    # driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_state_chosen"]/div/div/input').send_keys(Keys.RETURN)
+    # sleep(0.25)
 
     # select city
-    driver.find_element(By.XPATH, '//span[contains(.,"City")]').click()
-    sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/div/input').send_keys('Vancouver')
-    sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/div/input').send_keys(Keys.RETURN)
-    sleep(0.25)
+    driver.find_element(By.XPATH, '//span[text()="City"]').click()
+    sleep(0.5)
+
+    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/ul/li[2]').click()
+    sleep(0.5)
+    # driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/div/input').send_keys(Keys.RETURN)
+    # sleep(0.25)
 
     # select Credentials
     driver.find_element(By.XPATH, '//span[contains(., "Credentials")]').click()
