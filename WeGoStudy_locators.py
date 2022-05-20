@@ -11,8 +11,8 @@ app_url = 'https://www.wegostudy.ca/'
 homepage_title = 'WeGoStudy'
 admin_email = 'pewec@protonmail.com'
 admin_password = '789WeStudy!'
-login_page_url = 'http://34.233.225.85/partner/home'
-student_page_url = 'http://34.233.225.85/partners/student_details'
+login_page_url = 'https://www.wegostudy.ca/partner/home'
+student_page_url = 'https://www.wegostudy.ca/partners/student_details'
 
 first_name = faker.first_name()
 last_name = faker.last_name()

@@ -10,8 +10,9 @@ from selenium.common.exceptions import NoSuchElementException
 import WeGoStudy_locators as locators
 from webdriver_manager.chrome import ChromeDriverManager
 
-s=Service(ChromeDriverManager().install())
+s = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=s)
+
 
 def setUp():
     print(f'Test starts at {datetime.datetime.now()}.')
@@ -29,6 +30,7 @@ def setUp():
         driver.close()
         driver.quit()
 
+
 def tearDown():
     if driver is not None:
         print(f'---------The test is passed.----------------')
@@ -36,6 +38,7 @@ def tearDown():
         sleep(0.5)
         driver.close()
         driver.quit()
+
 
 def login():
     driver.find_element(By.XPATH, '//b[normalize-space()="LOGIN"]').click()
@@ -46,9 +49,10 @@ def login():
     sleep(0.25)
     driver.find_element(By.XPATH, '//input[@value="SIGN IN"]').click()
     sleep(0.5)
-    driver.find_element(By.ID,'authentication-popup').is_displayed()
+    driver.find_element(By.ID, 'authentication-popup').is_displayed()
     sleep(3)
     print('------------Signed up successfully!-----------------')
+
 
 def logout():
     driver.find_element(By.CSS_SELECTOR, 'span[class="my-auto mr-2 pf-name"]').click()
@@ -61,13 +65,13 @@ def logout():
 
 
 def create_new_student():
-    if driver.current_url==locators.login_page_url:
+    if driver.current_url == locators.login_page_url:
         print(f'----------Current URL: {locators.login_page_url}--------')
     driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
     sleep(0.25)
     driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
     sleep(0.25)
-    if driver.current_url==locators.student_page_url:
+    if driver.current_url == locators.student_page_url:
         print(f'-------------Create New Student----------------------')
     driver.find_element(By.XPATH, '//a[normalize-space()="Create New Student"]').click()
     sleep(0.25)
@@ -75,7 +79,7 @@ def create_new_student():
     # date of birth
     driver.find_element(By.ID, 'user_student_detail_attributes_birth_date').send_keys('1')
     sleep(1.5)
-    driver.find_element(By.ID, 'user_student_detail_attributes_birth_date').send_keys(10*Keys.BACKSPACE)
+    driver.find_element(By.ID, 'user_student_detail_attributes_birth_date').send_keys(10 * Keys.BACKSPACE)
     sleep(1.5)
     driver.find_element(By.ID, 'user_student_detail_attributes_birth_date').send_keys(locators.birthday)
     sleep(0.5)
@@ -99,7 +103,6 @@ def create_new_student():
     # driver.find_element(By.XPATH, f'//li[@data-option-array-index="{x}"]').click()
     # sleep(0.5)
 
-
     # select province
     driver.find_element(By.XPATH, '//span[text()="Province/State"]').click()
     sleep(0.5)
@@ -115,7 +118,8 @@ def create_new_student():
     driver.find_element(By.XPATH, '//span[text()="City"]').click()
     sleep(0.5)
 
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/ul/li[2]').click()
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/ul/li[2]').click()
     sleep(0.5)
     # driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_address_attributes_city_chosen"]/div/div/input').send_keys(Keys.RETURN)
     # sleep(0.25)
@@ -123,19 +127,26 @@ def create_new_student():
     # select Credentials
     driver.find_element(By.XPATH, '//span[contains(., "Credentials")]').click()
     sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys('Degree')
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(
+        'Degree')
     sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(Keys.RETURN)
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(
+        Keys.RETURN)
     sleep(0.25)
 
     # select GPA Scale
     driver.find_element(By.XPATH, '//span[contains(., "GPA Scale")]').click()
     sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_user_educations_attributes_0_gpa_scale_chosen"]/div/div/input').send_keys('100')
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_gpa_scale_chosen"]/div/div/input').send_keys(
+        '100')
     sleep(0.25)
-    driver.find_element(By.XPATH, '//*[@id="user_student_detail_attributes_user_educations_attributes_0_gpa_scale_chosen"]/div/div/input').send_keys(Keys.RETURN)
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_gpa_scale_chosen"]/div/div/input').send_keys(
+        Keys.RETURN)
     sleep(0.25)
-
 
     for i in range(len(locators.lst_column)):
         clm, fid, val = locators.lst_column[i], locators.lst_id[i], locators.lst_value[i]
@@ -149,11 +160,62 @@ def create_new_student():
     print('-------------Student is created successfully.-----------')
 
 
+def create_new_application():
+    print(f'*****************Course Information******************')
+
+    driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
+    # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
+    sleep(0.75)
+    driver.find_element(By.LINK_TEXT, 'Create Application').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//span[normalize-space()="Select School"]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//*[@id="admission_institute_detail_id_chosen"]/div/ul/li[7]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//span[normalize-space()="Select Course"]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//*[@id="admission_institute_program_id_chosen"]/div/ul/li[2]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//span[normalize-space()="Select Starting Semester"]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//*[@id="admission_starting_semester_chosen"]/div/ul/li[3]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//span[normalize-space()="Select Start Day"]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//*[@id="admission_start_day_chosen"]/div/ul/li[3]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//span[normalize-space()="Select Year"]').click()
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//*[@id="admission_start_year_chosen"]/div/ul/li[3]').click()
+    sleep(0.75)
+    # driver.find_element(By.CSS_SELECTOR, '#admission_last_name').send_keys(locators.last_name)
+    # sleep(0.75)
+    # driver.find_element(By.XPATH, '//input[@id="admission_electronic_communication_true"]').click()
+    # sleep(0.75)
+    driver.find_element(By.XPATH, '//input[@name="commit"]').click()
+    sleep(2)
+    driver.find_element(By.CLASS_NAME, 'toast-message').is_displayed()
+    sleep(4)
+    print('-------------application is created successfully.-----------')
+
+def view_details():
+    print(f'***************** View Details ******************')
+    driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
+    # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
+    sleep(4)
+    driver.find_element(By.XPATH, '//a[@href="/partners/student_details/christopher-knapp"]').click()
+    sleep(2)
+    driver.find_element(By.XPATH, '//body//form').click()
+    sleep(6)
+
 # setUp()
 # login()
 # create_new_student()
+# create_new_application()
+# view_details()
 # logout()
 # tearDown()
-
-
-
