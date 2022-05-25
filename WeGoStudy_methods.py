@@ -41,6 +41,7 @@ def tearDown():
 
 
 def login():
+    print('------------ login -----------------')
     driver.find_element(By.XPATH, '//b[normalize-space()="LOGIN"]').click()
     sleep(0.25)
     driver.find_element(By.ID, 'user_email').send_keys(locators.admin_email)
@@ -51,7 +52,7 @@ def login():
     sleep(0.5)
     driver.find_element(By.ID, 'authentication-popup').is_displayed()
     sleep(3)
-    print('------------Signed up successfully!-----------------')
+    print('------------ logged in successfully!-----------------')
 
 
 def logout():
@@ -161,13 +162,13 @@ def create_new_student():
 
 
 def create_new_application():
-    print(f'*****************Course Information******************')
+    print(f'***************** create_new_application ******************')
 
     driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
     # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
     sleep(1.25)
     driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
-    sleep(0.75)
+    sleep(1.5)
     driver.find_element(By.LINK_TEXT, 'Create Application').click()
     sleep(0.75)
     driver.find_element(By.XPATH, '//span[normalize-space()="Select School"]').click()
@@ -190,17 +191,18 @@ def create_new_application():
     sleep(0.75)
     driver.find_element(By.XPATH, '//*[@id="admission_start_year_chosen"]/div/ul/li[3]').click()
     sleep(0.75)
-    # driver.find_element(By.CSS_SELECTOR, '#admission_last_name').send_keys(locators.last_name)
-    # sleep(0.75)
-    # driver.find_element(By.XPATH, '//input[@id="admission_electronic_communication_true"]').click()
-    # sleep(0.75)
+    driver.find_element(By.CSS_SELECTOR, '#admission_last_name').send_keys(locators.last_name)
+    sleep(0.75)
+    driver.find_element(By.XPATH, '//input[@id="admission_electronic_communication_true"]').click()
+    sleep(0.75)
     driver.find_element(By.XPATH, '//input[@name="commit"]').click()
     sleep(2)
     driver.find_element(By.CLASS_NAME, 'toast-message').is_displayed()
     sleep(4)
     print('-------------application is created successfully.-----------')
 
-def view_details():
+
+def view_student_details():
     print(f'***************** View Details ******************')
     driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
     # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
@@ -212,10 +214,81 @@ def view_details():
     driver.find_element(By.XPATH, '//body//form').click()
     sleep(6)
 
+
+def edit_student_details():
+    print(f'***************** Edit Student Details ******************')
+    driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
+    # driver.find_element(By.CSS_SELECTOR, 'a[aria-expanded="false"] span[class="my-auto mr-2"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
+    sleep(4)
+    driver.find_element(By.XPATH, '//a[@href="/partners/student_details/christopher-knapp"]').click()
+    sleep(2)
+    # driver.find_element(By.XPATH, '//body//form').click()
+    # sleep(6)
+    # select country
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_address_attributes_country_chosen"]/div/div/input').send_keys(
+        'Mexico')
+    sleep(0.25)
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_address_attributes_country_chosen"]/div/div/input').send_keys(
+        Keys.RETURN)
+    sleep(0.25)
+
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(
+        'Master')
+    sleep(0.25)
+    driver.find_element(By.XPATH,
+                        '//*[@id="user_student_detail_attributes_user_educations_attributes_0_credentials_chosen"]/div/div/input').send_keys(
+        Keys.RETURN)
+    sleep(0.25)
+
+    for i in range(len(locators.lst_column)):
+        clm, fid, val = locators.lst_column[i], locators.lst_id[i], locators.lst_value[i]
+        driver.find_element(By.ID, fid).send_keys(str(val))
+        sleep(0.25)
+
+    driver.find_element(By.XPATH, '//body//form').click()
+    sleep(6)
+    print(f'***************** Student Details edited ******************')
+    # driver.find_element(By.XPATH, '//input[@value="Save"]').click()
+    # sleep(5)
+    # driver.find_element(By.CLASS_NAME, 'toast-message').is_displayed()
+    # sleep(5)
+
+
+def view_application_list():
+    print(f'***************** View Application list for one student  ******************')
+    driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Students"]').click()
+    sleep(4)
+    driver.find_element(By.XPATH, '//div[@id="student_list"]//div[1]//div[3]//a[3]').click()
+    sleep(2)
+    # driver.find_element(By.CSS_SELECTOR, '.btn.btn-default.btn-sm').click()
+    driver.find_element(By.XPATH, '//button[@class="btn btn-default btn-sm"]').click()
+    sleep(2)
+
+def schools():
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(0.25)
+    
+
+
+
+
+
+
+
+
+
 # setUp()
 # login()
 # create_new_student()
 # create_new_application()
-# view_details()
+# edit_student_details()
+# view_application_list()
 # logout()
 # tearDown()
