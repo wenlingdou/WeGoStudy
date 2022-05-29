@@ -13,5 +13,10 @@ class PositiveTestCases(unittest.TestCase):
         # methods.view_student_details() # view student details is implicit in edit student details
         methods.edit_student_details()
         methods.view_application_list()
+        methods.commissions()
+        methods.filter_by_study_area()
+        methods.filter_by_city()
+        methods.filter_by_program()
+        methods.schools()
         methods.logout()
         methods.tearDown()
