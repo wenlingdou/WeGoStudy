@@ -319,6 +319,7 @@ def sort_by_dropdown_menu():
     driver.find_element(By.XPATH, '//a[normalize-space()="Profile Created"]').click()
     sleep(1.25)
 
+
 def filter_by_study_area():
     print(f' *********** Filter By Study Area *******************')
     driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
@@ -380,6 +381,32 @@ def schools():
     sleep(5)
 
 
+def schools_sort_by():
+    print(f'***************** Sort By ******************')
+    driver.find_element(By.XPATH, '//a[normalize-space()="Schools"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@role="button"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Alphabetic A to Z"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@role="button"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Alphabetic Z to A"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@role="button"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Location A to Z"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@role="button"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Location Z to A"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//div[@role="button"]').click()
+    sleep(1.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Program"]').click()
+    sleep(1.25)
+
+
 
 
 # setUp()
@@ -395,5 +422,6 @@ def schools():
 # filter_by_city()
 # filter_by_program()
 # schools()
+# schools_sort_by()
 # logout()
 # tearDown()

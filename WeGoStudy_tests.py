@@ -19,5 +19,6 @@ class PositiveTestCases(unittest.TestCase):
         methods.filter_by_city()
         methods.filter_by_program()
         methods.schools()
+        methods.schools_sort_by()
         methods.logout()
         methods.tearDown()
