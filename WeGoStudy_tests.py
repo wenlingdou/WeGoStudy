@@ -23,3 +23,8 @@ class PositiveTestCases(unittest.TestCase):
         methods.application_page()
         methods.logout()
         methods.tearDown()
+
+#         system log -- add log recorder 
+# hudson.plugins.git.GitStatus - All
+# com.cloudbees.jenkins.GitHubWebHook - All
+# org.jenkinsci.plugins.github - All
