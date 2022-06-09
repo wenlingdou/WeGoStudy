@@ -406,6 +406,23 @@ def schools_sort_by():
     driver.find_element(By.XPATH, '//a[normalize-space()="Program"]').click()
     sleep(1.25)
 
+def application_page():
+    if driver.current_url == locators.application_page_url:
+        print(f'*****************Navigate to Application Page  ******************')
+
+    driver.find_element(By.XPATH, '//span[normalize-space()="My WeGoStudy"]').click()
+    sleep(0.25)
+    driver.find_element(By.XPATH, '//a[normalize-space()="Applications"]').click()
+    sleep(0.5)
+    driver.find_element(By.XPATH, "//input[@id='student']").send_keys("yan")
+    sleep(0.5)
+    driver.find_element(By.ID, 'filter_application').click()
+    sleep(1.5)
+    driver.find_element(By.XPATH, "//a[normalize-space()='All Applications']").click()
+    sleep(0.5)
+
+
+
 
 
 
@@ -423,5 +440,6 @@ def schools_sort_by():
 # filter_by_program()
 # schools()
 # schools_sort_by()
+# application_page()
 # logout()
 # tearDown()
