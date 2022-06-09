@@ -12,8 +12,8 @@ class PositiveTestCases(unittest.TestCase):
         # methods.edit_student_details()
         # # methods.create_new_application()  # don't need new applications
         # methods.view_application_list()
-        methods.create_referral()  # cannot delete referrals, don't make more. Doesnt work, (pop up window)
-        methods.commissions()
+        # methods.create_referral()  # cannot delete referrals, don't make more. Doesnt work, (pop up window)
+        # methods.commissions()
         methods.sort_by_dropdown_menu()
         methods.filter_by_study_area()
         methods.filter_by_city()
